@@ -8,7 +8,7 @@ var ec2 = new aws.EC2();
 const keyForEpochMakerinAMI = "DATETODEL-";
 const keyForInstanceTagToBackup = "AutoDigiBackup"; 
 const keyForInstanceTagDurationBackup = "AutoDigiBackupRetentionDays"; 
-const keyForInstanceTagScheduledDays = "AutoDigiBackupSchedule"; //accepts day of week * / 0,1,2,3,4,5,6
+const keyForInstanceTagScheduledDays = "AutoDigiBackupSchedule"; //accepts day of month, from 1 to 30 * / 1 .. 30
 
 //returns true or false based on tag value 
 function checkIfBackupNeedsToRunToday(tagScheduleDays){
@@ -18,9 +18,9 @@ function checkIfBackupNeedsToRunToday(tagScheduleDays){
         }
 
     var today=new Date();
-    var dayOfWeek = today.getDay(); //this will be 0 for Sunday and upto 6 for Saturday.
-    console.log("Should system process today? " + tagScheduleDays.includes(dayOfWeek));
-    return tagScheduleDays.includes(dayOfWeek);
+    var dayOfMonth = today.getDate(); //this will be 1 for first day of month and up to 28/30/31 for last one.
+    console.log("Should system process today? " + tagScheduleDays.includes(dayOfMonth));
+    return tagScheduleDays.includes(dayOfMonth);
 }
 
 //Lambda handler
