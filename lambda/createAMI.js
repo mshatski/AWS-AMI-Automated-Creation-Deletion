@@ -1,6 +1,6 @@
 //Init AWS
 var aws = require('aws-sdk');  
-aws.config.region = 'eu-west-1'; //Change this to the region you like
+aws.config.region = 'us-west-2'; //Change this to the region you like
 var ec2 = new aws.EC2();  
 
 //Variables for the script
